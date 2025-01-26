@@ -5,11 +5,11 @@ class Program
 {
     static void Main()
     {
-        string server = "ash.wserv.org";
-        int port = 6112;
-        string username = "username";
-        string password = "password";
-        string home = "warnet";
+        var server = "ash.wserv.org";
+        var port = 6112;
+        var username = "username";
+        var password = "password";
+        var home = "warnet";
 
         using (var socket = Connect(server, port))
         {
@@ -24,8 +24,7 @@ class Program
 
     static TcpClient Connect(string server, int port)
     {
-        var client = new TcpClient(server, port);
-        return client;
+        return new TcpClient(server, port);
     }
 
     static void Disconnect(TcpClient client)
@@ -45,7 +44,7 @@ class Program
     static void Send(TcpClient client, string data)
     {
         var stream = client.GetStream();
-        byte[] buffer = Encoding.UTF8.GetBytes(data + "\r\n");
+        var buffer = Encoding.UTF8.GetBytes(data + "\r\n");
         stream.Write(buffer, 0, buffer.Length);
     }
 
@@ -57,7 +56,7 @@ class Program
             while (true)
             {
                 string line = reader.ReadLine()?.Trim();
-                if (line == null) break; // Break if the server closes the connection
+                if (line == null) break;
                 Console.WriteLine(line);
             }
         }
