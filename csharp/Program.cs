@@ -55,7 +55,7 @@ class Program
         {
             while (true)
             {
-                string line = reader.ReadLine()?.Trim();
+                var line = reader.ReadLine()?.Trim();
                 if (line == null) break;
                 Console.WriteLine(line);
             }
